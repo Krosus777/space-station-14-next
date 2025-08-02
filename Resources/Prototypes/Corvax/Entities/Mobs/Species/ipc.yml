@@ -404,6 +404,8 @@
         type: StoreBoundUserInterface
       enum.HereticLivingHeartKey.Key: # goob edit - heretics
         type: LivingHeartMenuBoundUserInterface
+      enum.IpcFaceUiKey.Face:
+        type: IpcFaceUserInterface
 
 - type: entity
   save: false
