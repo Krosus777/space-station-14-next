@@ -1,0 +1,169 @@
+- type: humanoidProfile
+  id: ProfileRedAfro
+  profile:
+    name: Red Afro
+    species: Human
+    age: 30
+    sex: Male
+    gender: Male
+    appearance:
+      hair: HumanHairAfro
+      hairColor: "#ff0000"
+      facialHair: HumanFacialHairFullbeard
+      facialHairColor: "#ff0000"
+      eyeColor: "#0000ff"
+      skinColor: "#c0967f"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfileGreenBedhead
+  profile:
+    name: Green Bedhead
+    species: Human
+    age: 25
+    sex: Female
+    gender: Female
+    appearance:
+      hair: HumanHairBedhead
+      hairColor: "#00ff00"
+      facialHair: FacialHairShaved
+      facialHairColor: "#00ff00"
+      eyeColor: "#a52a2a"
+      skinColor: "#ffe0bd"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfileBlueBald
+  profile:
+    name: Blue Bald
+    species: Human
+    age: 40
+    sex: Male
+    gender: Male
+    appearance:
+      hair: HairBald
+      hairColor: "#000000"
+      facialHair: HumanFacialHairHip
+      facialHairColor: "#000000"
+      eyeColor: "#00ff00"
+      skinColor: "#8d5524"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfilePinkPony
+  profile:
+    name: Pink Pony
+    species: Human
+    age: 22
+    sex: Female
+    gender: Female
+    appearance:
+      hair: HumanHairPonytail
+      hairColor: "#ff69b4"
+      facialHair: FacialHairShaved
+      facialHairColor: "#ff69b4"
+      eyeColor: "#9400d3"
+      skinColor: "#ffdbac"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfileBlondeHawk
+  profile:
+    name: Blonde Hawk
+    species: Human
+    age: 28
+    sex: Male
+    gender: Male
+    appearance:
+      hair: HumanHairMohawk
+      hairColor: "#f0e68c"
+      facialHair: HumanFacialHairChin
+      facialHairColor: "#f0e68c"
+      eyeColor: "#808080"
+      skinColor: "#d2b48c"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfileBrownLong
+  profile:
+    name: Brown Long
+    species: Human
+    age: 33
+    sex: Female
+    gender: Female
+    appearance:
+      hair: HumanHairLong
+      hairColor: "#8b4513"
+      facialHair: FacialHairShaved
+      facialHairColor: "#8b4513"
+      eyeColor: "#8e7618"
+      skinColor: "#c68642"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfileWhiteBuzz
+  profile:
+    name: White Buzz
+    species: Human
+    age: 37
+    sex: Male
+    gender: Male
+    appearance:
+      hair: HumanHairBuzzcut
+      hairColor: "#ffffff"
+      facialHair: HumanFacialHairJensen
+      facialHairColor: "#ffffff"
+      eyeColor: "#000000"
+      skinColor: "#c3b091"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfilePurpleBraid
+  profile:
+    name: Purple Braid
+    species: Human
+    age: 29
+    sex: Female
+    gender: Female
+    appearance:
+      hair: HumanHairBraid
+      hairColor: "#800080"
+      facialHair: FacialHairShaved
+      facialHairColor: "#800080"
+      eyeColor: "#0000ff"
+      skinColor: "#5d4037"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfileOrangeSpike
+  profile:
+    name: Orange Spike
+    species: Human
+    age: 31
+    sex: Male
+    gender: Male
+    appearance:
+      hair: HumanHairSpiky
+      hairColor: "#ffa500"
+      facialHair: HumanFacialHairGt
+      facialHairColor: "#ffa500"
+      eyeColor: "#228b22"
+      skinColor: "#a0522d"
+      markings: []
+
+- type: humanoidProfile
+  id: ProfileGrayCut
+  profile:
+    name: Gray Cut
+    species: Human
+    age: 45
+    sex: Female
+    gender: Female
+    appearance:
+      hair: HumanHairSidecut
+      hairColor: "#808080"
+      facialHair: FacialHairShaved
+      facialHairColor: "#808080"
+      eyeColor: "#a52a2a"
+      skinColor: "#deb887"
+      markings: []

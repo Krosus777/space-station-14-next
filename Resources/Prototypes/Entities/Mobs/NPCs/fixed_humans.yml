@@ -1,0 +1,79 @@
+- type: entity
+  id: MobFixedRedAfro
+  name: Red Afro
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileRedAfro
+
+- type: entity
+  id: MobFixedGreenBedhead
+  name: Green Bedhead
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileGreenBedhead
+
+- type: entity
+  id: MobFixedBlueBald
+  name: Blue Bald
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileBlueBald
+
+- type: entity
+  id: MobFixedPinkPony
+  name: Pink Pony
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfilePinkPony
+
+- type: entity
+  id: MobFixedBlondeHawk
+  name: Blonde Hawk
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileBlondeHawk
+
+- type: entity
+  id: MobFixedBrownLong
+  name: Brown Long
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileBrownLong
+
+- type: entity
+  id: MobFixedWhiteBuzz
+  name: White Buzz
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileWhiteBuzz
+
+- type: entity
+  id: MobFixedPurpleBraid
+  name: Purple Braid
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfilePurpleBraid
+
+- type: entity
+  id: MobFixedOrangeSpike
+  name: Orange Spike
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileOrangeSpike
+
+- type: entity
+  id: MobFixedGrayCut
+  name: Gray Cut
+  parent: BaseMobHuman
+  components:
+  - type: HumanoidAppearance
+    initial: ProfileGrayCut
