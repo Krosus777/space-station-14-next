@@ -89,6 +89,17 @@
     containers:
       cell_slot: !type:ContainerSlot { }
   - type: Ipc
+    monitors:
+      breakout: BreakoutS
+      nature: NatureS
+      heart: HeartS
+      static: StaticS
+      waiting: WaitingS
+    defaultMonitor: breakout
+  - type: UserInterface
+    interfaces:
+      enum.IpcMonitorUiKey.Key:
+        type: IpcMonitorBoundUserInterface
   - type: ZombieImmune
   - type: Repairable
     fuelCost: 30

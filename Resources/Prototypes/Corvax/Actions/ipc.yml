@@ -9,3 +9,14 @@
     itemIconStyle: NoItem
   - type: InstantAction
     event: !type:ToggleDrainActionEvent
+
+- type: entity
+  id: ActionChangeIpcMonitor
+  name: Change monitor
+  description: Change monitor
+  components:
+  - type: Action
+    icon: Interface/Actions/actions_ai.rsi/crew_monitor.png
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ChangeMonitorActionEvent
