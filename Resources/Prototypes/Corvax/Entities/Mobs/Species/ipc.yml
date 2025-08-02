@@ -89,6 +89,17 @@
     containers:
       cell_slot: !type:ContainerSlot { }
   - type: Ipc
+    monitors:
+      shellguard: ShellguardShellguardMonitorHead1
+      hesphiastos: HesphiastosHesphiastosMonitorHead1
+      bishop: BishopBishopMonitorHead
+      wardtakahashi: WardtakahashiWardtakahashiMonitorHead
+      xion: XionXionMonitorHead1
+    defaultMonitor: shellguard
+  - type: UserInterface
+    interfaces:
+      enum.IpcMonitorUiKey.Key:
+        type: IpcMonitorBoundUserInterface
   - type: ZombieImmune
   - type: Repairable
     fuelCost: 30

@@ -1,5 +1,4 @@
-﻿using Content.Server.PowerCell;
-using Content.Shared.Actions;
+﻿using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Corvax.Ipc;
 using Content.Shared.Ninja.Components;
@@ -12,7 +11,13 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Sound.Components;
+using Content.Shared.UserInterface;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
+using Content.Server.PowerCell;
+using Content.Server.Humanoid;
 using Robust.Shared.Audio;
+using System.Collections.Generic;
 
 namespace Content.Server.Corvax.Ipc;
 
@@ -26,6 +31,8 @@ public sealed class IpcSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
 
 
 
@@ -37,21 +44,33 @@ public sealed class IpcSystem : EntitySystem
         SubscribeLocalEvent<IpcComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<IpcComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<IpcComponent, ToggleDrainActionEvent>(OnToggleAction);
+        SubscribeLocalEvent<IpcComponent, ChangeMonitorActionEvent>(OnChangeMonitorAction);
         SubscribeLocalEvent<IpcComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<IpcComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<IpcComponent, MobStateChangedEvent>(OnMobStateChanged);
+
+        Subs.BuiEvents<IpcComponent>(IpcMonitorUiKey.Key, subs =>
+        {
+            subs.Event<BoundUIOpenedEvent>(OnMonitorUiOpened);
+            subs.Event<IpcMonitorSelectMessage>(OnMonitorSelected);
+        });
     }
 
     private void OnMapInit(EntityUid uid, IpcComponent component, MapInitEvent args)
     {
         UpdateBatteryAlert((uid, component));
         _action.AddAction(uid, ref component.ActionEntity, component.DrainBatteryAction);
+        _action.AddAction(uid, ref component.MonitorActionEntity, component.ChangeMonitorAction);
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
+
+        if (!string.IsNullOrEmpty(component.DefaultMonitor))
+            SetMonitor(uid, component, component.DefaultMonitor);
     }
 
     private void OnComponentShutdown(EntityUid uid, IpcComponent component, ComponentShutdown args)
     {
         _action.RemoveAction(uid, component.ActionEntity);
+        _action.RemoveAction(uid, component.MonitorActionEntity);
     }
 
     private void OnPowerCellChanged(EntityUid uid, IpcComponent component, PowerCellChangedEvent args)
@@ -82,6 +101,36 @@ public sealed class IpcSystem : EntitySystem
 
         var message = component.DrainActivated ? "ipc-component-ready" : "ipc-component-disabled";
         _popup.PopupEntity(Loc.GetString(message), uid, uid);
+    }
+
+    private void OnChangeMonitorAction(EntityUid uid, IpcComponent component, ChangeMonitorActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        _ui.TryOpenUi(uid, IpcMonitorUiKey.Key, args.Performer);
+        args.Handled = true;
+    }
+
+    private void OnMonitorUiOpened(Entity<IpcComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        var monitors = new List<string>(ent.Comp.Monitors.Keys);
+        var current = ent.Comp.CurrentMonitor ?? string.Empty;
+        _ui.SetUiState(ent.Owner, IpcMonitorUiKey.Key, new IpcMonitorBoundUserInterfaceState(monitors, current));
+    }
+
+    private void OnMonitorSelected(Entity<IpcComponent> ent, ref IpcMonitorSelectMessage msg)
+    {
+        SetMonitor(ent.Owner, ent.Comp, msg.Monitor);
+    }
+
+    private void SetMonitor(EntityUid uid, IpcComponent component, string monitor)
+    {
+        if (!component.Monitors.TryGetValue(monitor, out var marking))
+            return;
+
+        component.CurrentMonitor = monitor;
+        _humanoid.SetMarkingId(uid, MarkingCategories.Head, 0, marking);
     }
     private void UpdateBatteryAlert(Entity<IpcComponent> ent, PowerCellSlotComponent? slot = null)
     {
@@ -140,5 +189,10 @@ public sealed class IpcSystem : EntitySystem
         {
             RemComp<SpamEmitSoundComponent>(uid);
         }
+
+        if (args.NewMobState == MobState.Dead)
+            _humanoid.RemoveMarking(uid, MarkingCategories.Head, 0);
+        else if (component.CurrentMonitor != null && component.Monitors.TryGetValue(component.CurrentMonitor, out var marking))
+            _humanoid.SetMarkingId(uid, MarkingCategories.Head, 0, marking);
     }
 }
