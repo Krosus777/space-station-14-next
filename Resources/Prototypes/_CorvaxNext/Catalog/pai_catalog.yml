@@ -1,0 +1,12 @@
+- type: listing
+  id: PAIHackDoor
+  name: Door Hack
+  description: Allows your PAI to hack and open doors.
+  productAction: ActionPAIHackDoor
+  cost:
+    SiliconMemory: 10
+  categories:
+  - PAIAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

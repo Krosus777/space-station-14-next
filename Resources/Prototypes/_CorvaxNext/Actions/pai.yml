@@ -1,0 +1,17 @@
+- type: entity
+  id: ActionPAIHackDoor
+  name: Door Hack
+  description: Hack a targeted door open after a short delay, even if bolted.
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: NoItem
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: unbolt_door }
+  - type: EntityTargetAction
+    event: !type:PAIHackDoorActionEvent
+      delay: 5
+    checkCanInteract: false
+    checkCanAccess: false
+    whitelist:
+      components:
+      - DoorComponent
