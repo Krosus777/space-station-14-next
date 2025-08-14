@@ -1,0 +1,30 @@
+- type: entity
+  name: camera
+  parent: BaseItem
+  id: InstantCamera
+  description: A camera that prints photos instantly.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/camera_bug.rsi
+    state: camera_bug
+  - type: Item
+    sprite: Objects/Devices/camera_bug.rsi
+  - type: InstantCamera
+
+- type: entity
+  name: photo
+  parent: Paper
+  id: Photo
+  description: A printed photograph.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: Photo
